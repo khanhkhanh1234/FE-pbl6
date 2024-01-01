@@ -75,49 +75,51 @@
         <p>Tiếp tục thôi.</p>
         <div class="buttons-group">
             <button  class="button-back">BACK</button>
-            <button @click="save">SAVE</button>
+            <button class="button-continue" @click="save">SAVE</button>
+            <a class="button-continue" href="http://localhost:8080/auth/exportAllExcel" >xuất excel</a>
+
+        </div>
+        <div class="buttons-group">
+            <button  class="button-back">BACK</button>
+          
         </div>
     </div>
 </template>
+
 <script>
 import { useOwnerStore } from '../store';
-import { computed, ref, watch } from 'vue';
+import { computed } from 'vue';
 import axios from 'axios';
 
 const ownerStore = useOwnerStore();
 
 export default {
-  setup() {
-    const ownerData = computed(() => ownerStore.getOwner);
-    const saveData = ref([]);
-
-    // Watch for changes in ownerData and update saveData
-    watch(ownerData, (newValue) => {
-      saveData.value = newValue;
-    });
-
-    const save = async () => {
+  data() {
+    return {
+      ownerData: computed(() => ownerStore.getOwner),
+    };
+  },
+  methods: {
+    async save() {
       try {
-        console.log(saveData.value);
-        console.log(ownerData);
         const user_id = localStorage.getItem('user_id');
         const requestData = {
-            user_id: user_id,
-          owner: ownerData.value[11],
-          yob: ownerData.value[0],
-          idcard: ownerData.value[9],
-          owneraddress: ownerData.value[10],
-          idcerti: ownerData.value[7],
+          user_id: user_id,
+          owner: this.ownerData[11],
+          yob: this.ownerData[0],
+          idcard: this.ownerData[9],
+          owneraddress: this.ownerData[10],
+          idcerti: this.ownerData[7],
           landplot: "",
-          landaddress: ownerData.value[6],
-          acreage: ownerData.value[5],
-          uses: ownerData.value[4],
-          dateuse: ownerData.value[3],
-          originuse: ownerData.value[2],
+          landaddress: this.ownerData[6],
+          acreage: this.ownerData[5],
+          uses: this.ownerData[4],
+          dateuse: this.ownerData[3],
+          originuse: this.ownerData[2],
           oldtree: "No",
           note: "This is another sample note",
           changecontent: "Updated landplot information",
-          image: ownerData.value[12],
+          image: this.ownerData[12],
           house: "No",
           constructionorther: "No",
         };
@@ -131,13 +133,43 @@ export default {
       } catch (error) {
         console.error('Error saving land certificate:', error);
       }
-    };
+      this.$router.push({ name: 'success' });
+    },
 
-    return {
-      ownerData,
-      saveData,
-      save,
-    };
+    async exportToExcel() {
+      try {
+        const user_id = localStorage.getItem('user_id');
+        const requestData = {
+          user_id: user_id,
+          owner: this.ownerData[11],
+          yob: this.ownerData[0],
+          idcard: this.ownerData[9],
+          owneraddress: this.ownerData[10],
+          idcerti: this.ownerData[7],
+          landplot: "",
+          landaddress: this.ownerData[6],
+          acreage: this.ownerData[5],
+          uses: this.ownerData[4],
+          dateuse: this.ownerData[3],
+          originuse: this.ownerData[2],
+          oldtree: "No",
+          note: "This is another sample note",
+          changecontent: "Updated landplot information",
+          image: this.ownerData[12],
+          house: "No",
+          constructionorther: "No",
+        };
+
+        const response = await axios.get(
+          'http://localhost:8080/auth/exportAllExcel',
+          requestData
+        );
+
+      
+      } catch (error) {
+        console.error('Error exporting to Excel:', error);
+      }
+    },
   },
 };
 </script>
@@ -178,6 +210,15 @@ export default {
     height: auto;
     width: 30%;
     border-radius: 5px;
+}
+.button-continue {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffff;
+    width: 100px;
+     text-align: center; 
+    border-radius: 8px;
+    box-shadow: -2px 1px 8px 5px;
 }
 .content-item textarea {
     border: 1px solid black;
