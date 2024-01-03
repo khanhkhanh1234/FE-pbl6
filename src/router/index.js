@@ -11,6 +11,7 @@ const router = createRouter({
         {
             path: "/",
             name: "home",
+            meta: { requiresAuth: 'auth' },
             component: () => import("../components/UploadImage.vue"),
         },
         {
