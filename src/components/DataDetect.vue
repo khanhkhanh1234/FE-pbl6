@@ -76,12 +76,6 @@
         <div class="buttons-group">
             <button  class="button-back">BACK</button>
             <button class="button-continue" @click="save">SAVE</button>
-            <a class="button-continue" href="http://localhost:8080/auth/exportAllExcel" >xuất excel</a>
-
-        </div>
-        <div class="buttons-group">
-            <button  class="button-back">BACK</button>
-          
         </div>
     </div>
 </template>
@@ -177,6 +171,7 @@ export default {
 .data-container {
     text-align: center;
     padding: auto 20px;
+    position: relative;
 }
 .title {
     font-weight: 550;
@@ -192,6 +187,7 @@ export default {
     text-align: start;
     border-radius: 5px;
     color: #ffff;
+    margin-bottom: 10px;
 }
 .co-title {
     background-color: rgb(190, 228, 215);
@@ -226,6 +222,9 @@ export default {
     border-radius: 8px;
     height: 80px;
 }
+.button-continue:hover {
+    box-shadow: 1px 1px 7px 1px #3498db;
+}
 .icon-check {
     background-color: #3498db;
     border-radius: 50%;
@@ -244,6 +243,9 @@ export default {
 }
 .button-back {
     box-shadow: 0px 0px 2px 0px;
+}
+.button-back:hover {
+    box-shadow: 1px 1px 7px 1px #3498db;;
 }
 .button-save {
     background-color: #3498db;
