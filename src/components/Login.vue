@@ -56,7 +56,7 @@ export default {
 		async login() {
 			console.log('voda');
 			try {
-				const response = await axios.post('http://localhost:8080/auth/login', {
+				const response = await axios.post('http://13.238.255.70:8080/auth/login', {
 					username: this.username,
 					password: this.password
 				});

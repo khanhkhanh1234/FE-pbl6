@@ -167,7 +167,7 @@ export default {
         };
 
         // Gọi API sử dụng Axios
-    	var response = await axios.post('http://localhost:8080/auth/register', requestData);
+    	var response = await axios.post('http://13.238.255.70:8080/auth/register', requestData);
       this.$router.push({ name: "login" });
       console.log(response);
 

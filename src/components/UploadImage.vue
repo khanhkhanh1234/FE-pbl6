@@ -42,7 +42,7 @@
       </ul>
     </div>
     <div class="buttons-group">
-      <a class="export-button" href="http://localhost:8080/auth/exportAllExcel" >xuất excel</a>
+      <a class="export-button" href="http://13.238.255.70:8080/auth/exportAllExcel" >xuất excel</a>
       <button @click="test1" class="button-continue">Tiếp tục</button>
     </div>
   </div>

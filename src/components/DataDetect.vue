@@ -11,7 +11,7 @@
                 </div>
                 <div class="content-item">
                     <p>Năm sinh</p>
-                    <textarea name="" v-model="ownerData[0]" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" v-model="ownerData[8]" id="" cols="30" rows="10"></textarea>
                 </div>
                 <div class="content-item">
                     <p>CMND số</p>
@@ -119,7 +119,7 @@ export default {
         };
 
         const response = await axios.post(
-          'http://localhost:8080/auth/saveLandCertificate',
+          'http://13.238.255.70:8080/auth/saveLandCertificate',
           requestData
         );
 
@@ -155,7 +155,7 @@ export default {
         };
 
         const response = await axios.get(
-          'http://localhost:8080/auth/exportAllExcel',
+          'http://13.238.255.70:8080/auth/exportAllExcel',
           requestData
         );
 
